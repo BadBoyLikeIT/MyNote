@@ -1,0 +1,158 @@
+1.HelloWorldHandler.java
+package server;  
+  
+import Ice.Current;  
+import myice.demo.test._HelloWorldIDLDisp;  
+  
+/** 
+ * 接口处理类，继承生成的_HelloWorldIDLDisp类 
+ */  
+public class HelloWorldHandler extends _HelloWorldIDLDisp {  
+  
+    private static final long serialVersionUID = 1L;  
+  
+    /* 
+     * 在__current.ctx里可获取到客户端额外上送的参数 
+     */  
+    @Override  
+    public String sayHello(String username, Current __current) {  
+        return "Hello ZeroC ICE, [" + username + "]";  
+    }  
+  
+} 
+
+2.Server端注册服务并监听请求
+package server;  
+  
+public class HelloWorldServer {  
+  
+    public static void main(String[] args) {  
+        Ice.Communicator communicator = null;  
+          
+        try {  
+            // 初始化ICE Communicator对象，args可以传一些初始化参数，如连接超时、初始化客户端连接池数量等  
+            communicator = Ice.Util.initialize(args);  
+              
+            // 创建ObjectAdapter（名称为helloWorldAdapter），使用缺省的通信协议（TCP/IP），端口为7890，用于监听请求  
+            Ice.ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("helloWorldAdapter", "default -p 7890");      //1.绑定服务名与端口
+              
+            // 创建服务端接口处理handler实例（ice里称为servant）  
+            HelloWorldHandler helloWorldHandler = new HelloWorldHandler();  
+              
+            /* 
+             * 将helloWorldHandler添加到ObjectAdapter中，并将helloWorldHandler关联到ID为"helloWorldHandler"的Ice Object 
+             * （此处ID相当于接口名称，全局唯一，client端通过该名称连接上来） 
+             */  
+            adapter.add(helloWorldHandler, Ice.Util.stringToIdentity("helloWorldHandler"));  //2.绑定服务名与实例
+            adapter.activate();  // 激活ObjectAdapter                     //3.开启服务
+              
+            // 在服务退出前，一直监听请求  
+            communicator.waitForShutdown();  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            if (communicator != null) {  
+                communicator.destroy();  
+            }  
+        }  
+    }  
+      
+}  
+
+
+//handsomelee 自己理解 这个就是对3步骤的极简化
+adapter = communicator()->createObjectAdapter("");//LOCAL_ADAPTER_NAME);
+callback = new ClientCallbackI(&msgQueue, &configMsgQueue);
+adapter->add(callback, ::g_clientCtx.ident);
+adapter->activate();
+
+3.Client发送请求并得到响应
+package server;  
+  
+public class HelloWorldServer {  
+  
+    public static void main(String[] args) {  
+        Ice.Communicator communicator = null;  
+          
+        try {  
+            // 初始化ICE Communicator对象，args可以传一些初始化参数，如连接超时、初始化客户端连接池数量等  
+            communicator = Ice.Util.initialize(args);  
+              
+            // 创建ObjectAdapter（名称为helloWorldAdapter），使用缺省的通信协议（TCP/IP），端口为7890，用于监听请求  
+            Ice.ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("helloWorldAdapter", "default -p 7890");  
+              
+            // 创建服务端接口处理handler实例（ice里称为servant）  
+            HelloWorldHandler helloWorldHandler = new HelloWorldHandler();  
+              
+            /* 
+             * 将helloWorldHandler添加到ObjectAdapter中，并将helloWorldHandler关联到ID为"helloWorldHandler"的Ice Object 
+             * （此处ID相当于接口名称，全局唯一，client端通过该名称连接上来） 
+             */  
+            adapter.add(helloWorldHandler, Ice.Util.stringToIdentity("helloWorldHandler"));  
+            adapter.activate();  // 激活ObjectAdapter  
+              
+            // 在服务退出前，一直监听请求  
+            communicator.waitForShutdown();  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            if (communicator != null) {  
+                communicator.destroy();  
+            }  
+        }  
+    }  
+      
+}  
+3.5 Client发送请求并得到响应
+
+package client;  
+  
+import myice.demo.test.HelloWorldIDLPrx;  
+import myice.demo.test.HelloWorldIDLPrxHelper;  
+  
+public class HelloWorldClient {  
+  
+    public static void main(String[] args) {  
+        Ice.Communicator communicator = null;  
+          
+        try {  
+            // 初始化ICE Communicator对象，args可以传一些初始化参数，如连接超时、初始化客户端连接池数量等  
+            communicator = Ice.Util.initialize(args);  
+              
+            // 传入远程服务接口的名称、网络协议、IP和端口，创建一个Proxy对象  
+            Ice.ObjectPrx base = communicator.stringToProxy("helloWorldHandler:default -p 7890");  //1.请求连接
+              
+            /* 
+             * 通过checkedCast向下转型，获取HelloWorld接口的代理类（客户端） 
+             * 其中：HelloWorldIDLPrx和HelloWorldIDLPrxHelper为生成的类 
+             */  
+            HelloWorldIDLPrx helloWorldClient = HelloWorldIDLPrxHelper.checkedCast(base);  //2.找到服务对应的实例
+            if (helloWorldClient != null) {  
+                String result = helloWorldClient.sayHello("ZEROC ICE");                 //3.回调server上的方法
+                  
+                // 可额外传参到服务端，服务端在Current的ctx属性里可获取到传参值。如：  
+//              Map<String, String> params = new HashMap<String, String>();  
+//              params.put("param1", "aaaaaaa");  
+//              params.put("param2", "bbbbbbb");  
+//              String result = helloWorldClient.sayHello("ZEROC ICE", params);  
+                  
+                System.out.println(result);  
+            }  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            if (communicator != null) {  
+                communicator.destroy();  
+            }  
+        }  
+    }  
+      
+} 
+//handsomelee 自己理解 
+1.请求理连接
+2.找到服务对应的实例
+3.回调server上的方法
+
+adapter 称为对象适配器   communicator 通信器
+如果一个adapter可以拥有多个servant，也可以拥有多个传输端点
+

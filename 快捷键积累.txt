@@ -1,0 +1,39 @@
+phpstorm快捷键
+alt+ctrl+<- ->可以回到上下一个级
+ctrl+d  复制当前行  ctrl+y  删除当前行
+ctrl+/  注释当前行
+ctrl+f  查找相关内容
+ctrl+tab 页面选项跳转
+edit-find-find in path可以对查找的内容进行全局搜索
+file-setting 是设置的位置
+cannot pass objects of non-trivially-copyable type 
+ctrl+g  可以选择跳转到对应的行数
+ctrl+shift+A 可以进行全局搜索内容(包括控件)
+
+win10快捷键
+win+tab 显示所有小窗口
+win+上下左右 可以快速移动窗口
+win+tab 右下角可以新建桌面
+win+L 锁屏
+win+x 简易开始菜单
+esc+shift+ctrl 任务管理器
+win+r 运行
+win+d 回到桌面
+alt+tab 切换窗口
+win+i 查看设置
+win+e 文件资源管理器
+win+上下左右 //可以分屏，按比例!!!
+win+prt sc sys rq //截屏  
+shift+单击可以选中一块的内容
+
+
+
+chrome快捷键
+ctrl+t 新建标签页
+alt+d 跳到地址栏
+ctrl+n 新建窗口
+ctrl+tab 切换标签页
+ctrl+w 关闭当前标签页
+
+
+

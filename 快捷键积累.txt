@@ -17,15 +17,20 @@ win+tab 右下角可以新建桌面
 win+L 锁屏
 win+x 简易开始菜单
 esc+shift+ctrl 任务管理器
-win+r 运行
 win+d 回到桌面
 alt+tab 切换窗口
+win+m 最小化窗口
 win+i 查看设置
 win+e 文件资源管理器
 win+上下左右 //可以分屏，按比例!!!
 win+prt sc sys rq //截屏  
-shift+单击可以选中一块的内容
+shift+单击 //可以选中一块的内容
 
+win+r 运行
+win+r + control //控制窗口
+win+r + cmd //命令窗口
+win+r + regedit //注册表
+win+r + mstsc //远程连接
 
 
 chrome快捷键

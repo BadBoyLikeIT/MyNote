@@ -9,25 +9,32 @@ file-setting 是设置的位置
 cannot pass objects of non-trivially-copyable type 
 ctrl+g  可以选择跳转到对应的行数
 ctrl+shift+A 可以进行全局搜索内容(包括控件)
+shift+shift 可以全局搜索
+TODO  可以有特殊颜色显示
 
 win10快捷键
-win+tab 显示所有小窗口
+win+tab 显示所有小窗口  以时间线显示
 win+上下左右 可以快速移动窗口
 win+tab 右下角可以新建桌面
 win+L 锁屏
 win+x 简易开始菜单
 esc+shift+ctrl 任务管理器
+ctrl+alt+del  任务管理器菜单
 win+d 回到桌面
 alt+tab 切换窗口
-win+m 最小化窗口
-win+i 查看设置
+win+m 最小化窗口 所有窗口
+win+i 查看设置  可以用于win激活功能
 win+e 文件资源管理器
 win+上下左右 //可以分屏，按比例!!!
 win+prt sc sys rq //截屏  
 shift+单击 //可以选中一块的内容
+win+T 任务管理
+win+S 计算机搜索键
+alt+F4 关闭窗口
+
 
 win+r 运行
-win+r + control //控制窗口
+win+r + control //控制面板
 win+r + cmd //命令窗口
 win+r + regedit //注册表
 win+r + mstsc //远程连接
@@ -39,6 +46,14 @@ alt+d 跳到地址栏
 ctrl+n 新建窗口
 ctrl+tab 切换标签页
 ctrl+w 关闭当前标签页
+ctrl+URL 新建标签页跳转
 
+word快捷键
+ctrl+home 直接回到整个文档的最前面
+ctrl+end 直接回到整个文档的最后面
+
+visual studio
+F12 查看代码定义
+ctrl- 回退上一步
 
 

@@ -1,0 +1,53 @@
+1.string str = "abcd";
+str其实是const char *;需要明白这个事情！！！
+const char * 向char * 转换只要(char *)即可。
+例子：const char *p = "asdfl";
+	  string str = p;
+
+2.string 与 char *的相互转换
+	1.string str = "asdf";
+  	char * p = (char *)str.c_str();  //将const char * 转换成了 char *
+  	char * p1 = (char *)str.data();
+  	char p2[20];
+    strcpy(p2,str.c_str());  //字符串转换成了字符数组
+	2.char p[20] = "abasdlfj";  //字符数组转换成字符串
+      string str = p;
+
+3.3.1数字向string转换to_string;
+  3.2sprintf(char *p,format,value);
+  例子：sprintf(time,"%d",filestat.st_mtime);
+  string转换成数字
+  例子：
+  #include <stdio.h>
+  #include <stdlib.h>
+  int main()
+  {
+    char *a = "123";
+    int b = atoi(a);
+    printf("%d",b);
+  }
+  还可以用soti/stol/stoll等方法
+
+4.find与substr方法 字符串切割的一种思路
+auto position = strValue.find("---");
+query += field_db_name + " between '" + strValue.substr(1, position - 1) + "' and '" + strValue.substr(position + 3) + "'";
+
+例子：
+int pos = line.find(",");
+Data data_line;
+Item item;
+item.type = line.substr(0, pos);
+line = line.substr(pos + 1);
+pos = line.find(",");
+data_line.uid = stol(line.substr(0, pos));
+item.oid = line.substr(pos + 1);
+
+如果没有找到，会返回npos;
+
+
+5.string通过+连接字符串
+string a = "asdfjl";
+string b = "afsdf";
+string c = b + c;
+
+6.string是一个对象，所以string str;就已经初始化了！

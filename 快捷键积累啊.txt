@@ -30,6 +30,7 @@ win+prt sc sys rq //截屏
 shift+单击 //可以选中一块的内容
 win+T 任务管理
 win+S 计算机搜索键
+win+S 搜索“计算器”可使用计算器
 alt+F4 关闭窗口
 
 
